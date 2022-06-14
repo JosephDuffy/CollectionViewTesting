@@ -8,7 +8,6 @@ final class CollectionViewController: UICollectionViewController, UICollectionVi
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        collectionView.backgroundColor = .systemBackground
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "UICollectionViewCell")
 
         applyInitialData(
@@ -69,6 +68,14 @@ final class CollectionViewController: UICollectionViewController, UICollectionVi
     }
 
     /// With this method 0, 6 will not be updated until pull-to-refresh is used.
+    ///
+    /// This bug has been recreated on:
+    /// - iOS 15.2
+    ///
+    /// This bug could not be recreated on:
+    ///
+    /// - iOS 13.0
+    /// - iOS 14.0
     private func updateUsingReload() {
         collectionView.performBatchUpdates({
             data[0][0] = "0, 0 (updated)"
