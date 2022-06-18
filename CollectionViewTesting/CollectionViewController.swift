@@ -70,12 +70,16 @@ final class CollectionViewController: UICollectionViewController, UICollectionVi
     /// With this method 0, 6 will not be updated until pull-to-refresh is used.
     ///
     /// This bug has been recreated on:
-    /// - iOS 15.2
+    /// - iOS 15.0 (simulator & real device)
+    /// - iOS 15.2 (simulator)
+    /// - iOS 15.5 (simulator)
+    /// - iOS 16.0 developer beta 1 (simulator)
     ///
     /// This bug could not be recreated on:
     ///
-    /// - iOS 13.0
-    /// - iOS 14.0
+    /// - iOS 12.4 (real device).
+    /// - iOS 13.0 (simulator)
+    /// - iOS 14.0 (simulator)
     private func updateUsingReload() {
         collectionView.performBatchUpdates({
             data[0][0] = "0, 0 (updated)"
